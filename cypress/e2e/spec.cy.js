@@ -35,4 +35,40 @@ describe('template spec', () => {
     cy.get('input[type="lead"]').invoke('val').should('be.eql', 'wp@wp.pl')
  
   })
+
+  it('exercise 2a', () => {
+    cy.visit('https://qbek.github.io/selenium-exercises/pl/check_boxes.html')
+    
+    //prymitywne podejscie
+    // cy.get('[name="red"]').check();
+    // cy.get('[name="blue"]').check();
+
+    //check by value
+    // cy.get('[type="checkbox"]').check('red')
+    // cy.get('[type="checkbox"]').check('blue')
+
+    //zanzaczenie kilku naraz
+    cy.get('[type="checkbox"]').check(['red', 'blue'])
+  
+    // cy.get('form').then($form => {
+    //   cy.wrap($form).find('[name="red"]').check()
+    //   cy.wrap($form).find('[name="blue"]').check()
+    // })
+    
+    //ograniczenie operacji cypress do wnetrza <form> elementu
+    // cy.get('form').within( () => {
+    //   cy.get('[name="red"]').check()
+    //   cy.get('[name="blue"]').check()    
+    // })
+    
+    cy.get('#light').should('have.attr', 'data-color', '#FF00FF')
+    cy.get('#light').invoke('attr', 'data-color').should('be.eql', '#FF00FF')
+  })
+
+  it.only('exercise 2b', () => {
+    cy.visit('https://qbek.github.io/selenium-exercises/pl/check_boxes.html')
+    // cy.get('#switch').check({force:true})
+    cy.get('.custom-control-label').click()
+    cy.get('#text').should('be.enabled')
+  })
 })
