@@ -80,3 +80,18 @@ describe('template spec', () => {
       cy.wrap($a).should('be.visible')
     })
   })
+
+  it.only('test', () => {
+    cy.visit('https://qbek.github.io/selenium-exercises/sample.html')
+    
+    cy.contains('div', 'A').find('span')
+    cy.get('div:contains("A")').find('span')
+    cy.get('div').not(':contains("A")').find('span')
+
+    // cy.get('div:contains("A")').should('have.text', 'A\naaa')
+    // cy.get('div').not(':contains("A")').should('have.text', 'aaa')
+
+    cy.contains('div', new RegExp('^(\\s)+aaa')).find('span')
+
+  })
+})
