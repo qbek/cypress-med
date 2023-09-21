@@ -14,6 +14,15 @@ export const projectSteps = {
     //problem: zbyt luźna asercja, potencjalny false positive ('project 1', 'project 11')
     projectList.assertProjectExists(name)
     
+  },
+
+  selectProjectView: function () {
+    if (projectExist)
+      projectList.openRandomProject()
+    else {
+      this.createNewProject
+    }
+  
   }
 
 }
