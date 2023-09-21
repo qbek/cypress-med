@@ -65,10 +65,18 @@ describe('template spec', () => {
     cy.get('#light').invoke('attr', 'data-color').should('be.eql', '#FF00FF')
   })
 
-  it.only('exercise 2b', () => {
+  it('exercise 2b', () => {
     cy.visit('https://qbek.github.io/selenium-exercises/pl/check_boxes.html')
     // cy.get('#switch').check({force:true})
     cy.get('.custom-control-label').click()
     cy.get('#text').should('be.enabled')
   })
-})
+
+  it('example 3', () => {
+    cy.visit('https://qbek.github.io/selenium-exercises/pl/radio_buttons.html')
+    cy.get('input').check('radiozet')
+    cy.get('#radiozet-details a').then($a => {
+      cy.wrap($a).should('have.attr', 'href', 'https://www.radiozet.pl')
+      cy.wrap($a).should('be.visible')
+    })
+  })
