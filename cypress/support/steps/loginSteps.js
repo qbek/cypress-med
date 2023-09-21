@@ -1,15 +1,17 @@
+import { loginForm } from "../pageobjects/loginForm"
+import { loadingGlass } from "../pageobjects/loadingGlass"
 
 export const loginSteps = {
   openLoginPage: function () {
     cy.visit('https://todoist.com/auth/login')
-    cy.get('#loading', {timeout: 10000}).should('not.be.visible')
+    loadingGlass.waitForClose()
   },
 
   enterValidCredentials: function () {
-    cy.get('#element-0').type('gbinxeqerpnywwysux@awdrt.org')
-    cy.get('#element-3').type('ti4FCvBL39i7mMq')
-    cy.get('form').submit()
-    cy.get('#loading', {timeout: 10000}).should('not.be.visible')
+    loginForm.enterMail('gbinxeqerpnywwysux@awdrt.org')
+    loginForm.enterPassword('ti4FCvBL39i7mMq')
+    loginForm.submitForm()
+    loadingGlass.waitForClose()
   },
 
   checkIfLoggedIn: function () {
