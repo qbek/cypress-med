@@ -12,6 +12,14 @@ describe('todoist projects', () => {
     projectSteps.createNewProject()
     projectSteps.assertProject()
   })  
+
+  it.only('User can select new created project form projects list', () => {
+    cy.wrap('Projekt na listnie').as('projectName')
+    preconditions.userIsLoggedIn()
+    preconditions.userHasProjectCreatedRest()
+    projectSteps.assertProjectIsOnThelist()
+
+  })
 })
 
 

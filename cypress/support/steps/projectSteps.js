@@ -1,5 +1,6 @@
 import { projectList } from "../pageobjects/projectsList"
 import { newProjectForm } from "../pageobjects/newProjectForm"
+import { projectView } from "../pageobjects/projectView"
 
 
 export const projectSteps = {
@@ -15,19 +16,15 @@ export const projectSteps = {
 
   assertProject: function () {
     cy.get('@projectName').then(name => {
-      //problem: zbyt luźna asercja, potencjalny false positive ('project 1', 'project 11')
-      projectList.assertProjectExists(name)
+      projectView.assertProjectName(name)
     })
   },
-    
 
-  selectProjectView: function () {
-    if (projectExist)
-      projectList.openRandomProject()
-    else {
-      this.createNewProject
-    }
-  
+  assertProjectIsOnThelist: function () {
+    cy.get('@projectId').then( id => {
+      cy.get('@projectName').then( name => {
+        projectList.assertProjectExists(id, name)
+      })
+    })
   }
-
 }

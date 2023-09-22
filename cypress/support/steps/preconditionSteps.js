@@ -25,6 +25,20 @@ export const preconditions = {
     projectSteps.assertProject()
   },
 
+  userHasProjectCreatedRest: function () {
+    cy.get('@projectName').then (projectName => {
+      cy.request('POST', 'https://api.todoist.com/rest/v2/projects', { name: projectName})
+        .then( response => {
+          cy.wrap(response.body.id).as('projectId')
+        })
+    })
+    cy.get('@projectId').then(id => {
+      cy.log("projectId", id)
+    })
+    loadingGlass.waitForClose()
+    cy.wait(5000)
+  },
+
   userHasTaskInTheProject: function () {
     projectSteps.createNewProject()
     projectSteps.assertProject()
