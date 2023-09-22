@@ -81,7 +81,7 @@ describe('template spec', () => {
     })
   })
 
-  it.only('test', () => {
+  it('test', () => {
     cy.visit('https://qbek.github.io/selenium-exercises/sample.html')
     
     cy.contains('div', 'A').find('span')
@@ -93,5 +93,27 @@ describe('template spec', () => {
 
     cy.contains('div', new RegExp('^(\\s)+aaa')).find('span')
 
+  })
+
+  it.only('example 4', () => {
+    cy.visit('https://qbek.github.io/selenium-exercises/pl/selects.html')
+    cy.get('#question1').within( () => {
+      cy.get('select').select('4')
+      cy.get('button').click()
+    }) 
+
+    cy.get('#question2').within( () => {
+      cy.get('select').select('words-7')
+      cy.get('button').click()
+    }) 
+  
+    cy.get('#question3').within( () => {
+      cy.get('select').invoke('attr', 'data-tip').then( tip => {
+        cy.get('select').select(parseInt(tip))
+      })
+      cy.get('button').click()
+    })
+
+    
   })
 })
