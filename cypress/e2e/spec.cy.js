@@ -95,25 +95,53 @@ describe('template spec', () => {
 
   })
 
-  it.only('example 4', () => {
+  it('example 4', () => {
     cy.visit('https://qbek.github.io/selenium-exercises/pl/selects.html')
     cy.get('#question1').within( () => {
       cy.get('select').select('4')
       cy.get('button').click()
     }) 
+  })
 
-    cy.get('#question2').within( () => {
-      cy.get('select').select('words-7')
-      cy.get('button').click()
-    }) 
-  
-    cy.get('#question3').within( () => {
-      cy.get('select').invoke('attr', 'data-tip').then( tip => {
-        cy.get('select').select(parseInt(tip))
-      })
-      cy.get('button').click()
+  it.only('alias as return value replace', () => {
+    cy.wrap(1).as('num')
+
+    cy.get('@num').then( num => {
+      num++
+      cy.log(num)
+      cy.wrap(num).as('num')
     })
 
+    cy.get('@num').then( num => {
+      cy.log('pierwszy: ', num)
+    })
+
+    cy.get('@num').then( num => {
+      num++
+      return num
+    }).as('num')
+
+    cy.get('@num').then( num => {
+      cy.log('drugi: ', num)
+    })
     
+    cy.get('@num').then( num => ++num ).as('num')
+
+
+    cy.get('@num').then( num => {
+      cy.log('koniec: ', num)
+    })
+  })
+
+  it('web element as alias', () => {
+    cy.visit('https://qbek.github.io/selenium-exercises/pl/basic_form.html')
+
+    // cy.get('form #firstname').type('Jakub')
+    // cy.get('form #lastname').type('Szewczyk')
+
+    cy.get('form').as('form')
+    cy.get('@form').find('#firstname').type('Jakub')
+    cy.get('@form').find('#lastname').type('Szewczyk')
+
   })
 })
