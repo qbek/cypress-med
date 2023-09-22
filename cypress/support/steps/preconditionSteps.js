@@ -18,13 +18,17 @@ export const preconditions = {
     cy.request('POST', 'https://todoist.com/API/v9.1/user/login', body)
     cy.visit('https://todoist.com')
     loadingGlass.waitForClose()
-
   },
 
-  userHasProjectCreated: function (name) {
-    projectSteps.createNewProject(name)
-    projectSteps.assertProject(name)
+  userHasProjectCreated: function () {
+    projectSteps.createNewProject()
+    projectSteps.assertProject()
+  },
+
+  userHasTaskInTheProject: function () {
+    projectSteps.createNewProject()
+    projectSteps.assertProject()
+    taskSteps.create()
+    taskSteps.assertTask()
   }
-
-
 }

@@ -6,10 +6,11 @@ import { projectSteps } from "../support/steps/projectSteps"
 describe('todoist projects', () => {
 
   it('User can create new project', () => {
-    const projectName = 'CyPress szkolenie dzien 3'
+    //setter dla danej testowej
+    cy.wrap('CyPress szkolenie dzien 3').as('projectName')
     preconditions.userIsLoggedIn()
-    projectSteps.createNewProject(projectName)
-    projectSteps.assertProject(projectName)
+    projectSteps.createNewProject()
+    projectSteps.assertProject()
   })  
 })
 
