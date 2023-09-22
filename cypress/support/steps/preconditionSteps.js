@@ -22,21 +22,20 @@ export const preconditions = {
 
   userHasProjectCreated: function () {
     projectSteps.createNewProject()
-    projectSteps.assertProject()
+
   },
 
-  userHasProjectCreatedRest: function () {
+  userHasProjectCreated: function () {
     cy.get('@projectName').then (projectName => {
       cy.request('POST', 'https://api.todoist.com/rest/v2/projects', { name: projectName})
         .then( response => {
-          cy.wrap(response.body.id).as('projectId')
+          expect(response.status).to.eq(200)
+          cy.wrap(response.body).as('projectInfo')
+          cy.visit(`https://todoist.com/app/project/${response.body.id}`)
         })
     })
-    cy.get('@projectId').then(id => {
-      cy.log("projectId", id)
-    })
+    
     loadingGlass.waitForClose()
-    cy.wait(5000)
   },
 
   userHasTaskInTheProject: function () {

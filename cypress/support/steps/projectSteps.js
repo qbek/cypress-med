@@ -21,10 +21,8 @@ export const projectSteps = {
   },
 
   assertProjectIsOnThelist: function () {
-    cy.get('@projectId').then( id => {
-      cy.get('@projectName').then( name => {
-        projectList.assertProjectExists(id, name)
-      })
+    cy.get('@projectInfo').then( project => {
+        projectList.assertProjectExists(project.id, project.name)
     })
   }
 }

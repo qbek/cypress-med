@@ -10,7 +10,6 @@ describe('todoist tasks', () => {
   it('User can add task to the project', () => {
     cy.wrap('Projekt na zadanie').as('projectName')
     cy.wrap('Moje zadanie').as('taskName')
-
     preconditions.userHasProjectCreated()
     taskSteps.createNewTask()
     taskSteps.assertTask()

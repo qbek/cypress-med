@@ -1,5 +1,5 @@
 export const loadingGlass = {
   waitForClose: function () {
-    cy.get('#loading', {timeout: 10000}).should('not.be.visible')
+    cy.get('[data-testid="top_bar"]', {timeout: 15000}).should('be.visible')
   }
 }

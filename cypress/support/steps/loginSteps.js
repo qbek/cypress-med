@@ -4,7 +4,6 @@ import { loadingGlass } from "../pageobjects/loadingGlass"
 export const loginSteps = {
   openLoginPage: function () {
     cy.visit('https://todoist.com/auth/login')
-    loadingGlass.waitForClose()
   },
 
   enterValidCredentials: function () {
