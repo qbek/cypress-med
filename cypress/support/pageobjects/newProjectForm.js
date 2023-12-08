@@ -4,7 +4,7 @@ const newProjectFormEl = '.edit_project_modal__form'
 
 export const newProjectForm = {
   enterProjectName: function (name) {
-    cy.get(projectNameEl).type(name + '{enter}')
+    cy.get(projectNameEl).type(name)
   },
 
   submit: function () {
