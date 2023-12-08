@@ -1,5 +1,5 @@
-
-
+import { loginForm } from "../pageobjects/loginForm"
+import { loadingGlass } from "../pageobjects/loadingGlass"
 
 export const loginSteps = {
   userOpensLoginPage: function () {
@@ -7,14 +7,14 @@ export const loginSteps = {
   },
 
   userEntersValidCredentials: function () {
-    cy.get('#element-0').type('gbinxeqerpnywwysux@awdrt.org')
-    cy.get('#element-3').type('ti4FCvBL39i7mMq')
-    cy.get('form').submit()
+    loginForm.enterMail('gbinxeqerpnywwysux@awdrt.org')
+    loginForm.enterPassword('ti4FCvBL39i7mMq')
+    loginForm.submit()  
   },
 
   userChecksIfIsLoggedIn: function () {
-    cy.get('#loading').should('be.visible')
-   cy.get('#loading').should('not.be.visible')
-   cy.getCookie('todoistd').should('exist')
+    loadingGlass.isVisible()
+    loadingGlass.isNotVisible()
+    cy.getCookie('todoistd').should('exist')
   }
 }

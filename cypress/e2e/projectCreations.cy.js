@@ -16,3 +16,5 @@ describe("Project creation test", function () {
     projectSteps.userChecksIfProjectIsOnAllProjectsList(projectName)
   })
 })
+
+
