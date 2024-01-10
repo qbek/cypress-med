@@ -33,5 +33,36 @@ describe('exercises', function () {
       cy.get('.form-control-plaintext').should('have.value', 'kuba@szewczyk.com')
   })
 
+  it.only('Exercise 2a', function () {
+    cy.visit('https://qbek.github.io/selenium-exercises/pl/check_boxes.html')
+    
+    //antypattern - po checkboxach sie nie klika
+    // cy.get('[name="red"]').click()
+    // cy.get('[name="blue"]').click()
 
+    //kolejny anty wzorzec
+    // bo trzeba pisac selector do kazdego checkboxa osobno
+    
+    cy.get('[name="red"]').check()
+    cy.get('[name="green"]').uncheck()
+    cy.get('[name="blue"]').check()
+
+    // cy.get('[type="checkbox"]').uncheck()
+    // cy.get('[type="checkbox"]').check(['red', 'blue'])
+    
+
+    cy.get('#light').should('have.attr', 'data-color', '#FF00FF')
+
+  })
+
+  it('Exercise 2b', function () {
+    cy.visit('https://qbek.github.io/selenium-exercises/pl/check_boxes.html')
+
+    // trochę pójscie na skróty i omijanie przykrywającego elementu
+    // cy.get('#switch').check({force:true})
+
+    cy.get('#switch').uncheck({force:true})
+    cy.get('[for="switch"]').click()
+    cy.get('#text').should('be.enabled')
+  })
 })
