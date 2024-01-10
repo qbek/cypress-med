@@ -65,4 +65,28 @@ describe('exercises', function () {
     cy.get('[for="switch"]').click()
     cy.get('#text').should('be.enabled')
   })
+
+  it('Exercise 3', function () {
+    cy.visit('https://qbek.github.io/selenium-exercises/pl/radio_buttons.html')
+    cy.get('input').check('radiozet')
+    // cy.get('#radiozet-details a').should('have.attr', 'href', 'https://www.radiozet.pl')
+    // cy.get('#radiozet-details a').should('be.visible')
+
+    //zamiast zapisu css, mozna rozbic na poziomie cypress
+    // cy.get('#radiozet-details').find('a').should('have.attr', 'href', 'https://www.radiozet.pl')
+
+    cy.get('#radiozet-details a').then(function ($el) {
+      //jezeli chcesz zostac w kontekscie jQuery uzywasz czystego chai + funkcje jQuery
+      // expect($el.attr('href')).be.eql('https://www.radiozet.pl');
+      cy.wrap($el).should('have.attr', 'href', 'https://www.radiozet.pl')
+      cy.wrap($el).should('be.visible')
+    })
+
+    //ograniczenie kontekstu cypress do danego elementy
+    // (nie szukamy na calej stronie, tylko wewnatrze elementu)
+    cy.get('#radiozet-details').within(function () {
+      cy.get('a').should('have.attr', 'href', 'https://www.radiozet.pl')
+    })
+  })
+
 })
