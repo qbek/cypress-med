@@ -5,7 +5,7 @@ export const projectSteps = {
   },
   
   userChecksIfProjectIsCreated: function (name) {
-    cy.get('[data-testid="view_header"] .simple_content').should('have.text', name)
+    cy.get('[data-testid="view_header"] .simple_content').should('have.text', name + 'sss')
   },
   
   userChecksIfProjectIsOnAllProjectsList: function (name) {
