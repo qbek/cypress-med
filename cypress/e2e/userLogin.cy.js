@@ -9,6 +9,8 @@ describe('User login', function () {
     loginSteps.userOpensLoginPage()
     loginSteps.userEntersValidCredentials()
     loginSteps.userChecksIfLoggedIn()
+
+    
   })
 })
 

@@ -1,3 +1,5 @@
+import { loginForm } from "../pageojects/loginForm"
+
 const email = 'gbinxeqerpnywwysux@awdrt.org'
 const pass = 'ti4FCvBL39i7mMq'
 
@@ -7,13 +9,16 @@ export const loginSteps = {
     cy.visit('https://todoist.com/auth/login')
   },
   userEntersValidCredentials: function () {
-    cy.get('#element-0').type(email)
-    cy.get('#element-3').type(pass)
-    cy.get('form').submit()
+    // user enters 'asdgasdgdasg' into email filed
+    loginForm.enterEmail(email)
+    loginForm.enterPassword(pass)
+    loginForm.submitForm()
   },
   userChecksIfLoggedIn: function () {
     cy.get('#loading').should('exist')
     cy.get('#loading').should('not.exist')
     cy.getCookie('todoistd').should('exist')
+
+    
   }
 }

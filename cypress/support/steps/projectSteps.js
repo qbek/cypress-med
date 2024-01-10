@@ -1,15 +1,19 @@
+import { projectForm } from "../pageojects/projectForm"
+import { projectList } from "../pageojects/projectList"
+import { projectDetailsView } from "../pageojects/projectDetailsView"
+
 export const projectSteps = {
   userCreatesANewProject: function (name) {
-    cy.get('[aria-label="Add project"]').click()
-    cy.get('#edit_project_modal_field_name').type(name + '{enter}')
+    projectList.openNewProjectCreationForm()
+    projectForm.enterName(name)
+    projectForm.submitForm()
   },
   
   userChecksIfProjectIsCreated: function (name) {
-    cy.get('[data-testid="view_header"] .simple_content').should('have.text', name + 'sss')
+    projectDetailsView.checkProjectName(name)
   },
   
   userChecksIfProjectIsOnAllProjectsList: function (name) {
-    //istnieje ryzyko ze czesc tej nazwy bedzie w innym projekcie
-    cy.get('#projects_list').should('contain.text', name)
+    projectList.checkProjectExists(name)
   }
 }
