@@ -1,20 +1,28 @@
 /// <reference types="cypress" />
 
 describe('exercises', function () {
-  it('Exercise 1', function () {
+  it.only('Exercise 1', function () {
       cy.visit('https://qbek.github.io/selenium-exercises/pl/basic_form.html')
 
       //structura komendy cypress:
       // cy.<funkcja szukajaca elementu>.<funckja interakcji z elementem>
 
       //wprowadzanie tekstu    
-      cy.get('#firstname').type('Kuba')
+      // cy.get('#firstname').type('Kuba')
       //alternatywa poprzez wyszukiwanie sfocusowanego elementu
       // cy.get('#firstname').click()
       // cy.get(':focus').type('Kuba')
-      cy.get('#lastname').type('Szewczyk')
+      // cy.get('#lastname').type('Szewczyk')
       // cy.get('#email').type('kuba@szewczyk.com')
 
+      const f = cy.get('#firstname')
+      cy.get('#lastname').type('szzz')
+
+      // l.type('test')
+      f.type('another')
+
+
+      
       // klikniecie w przycisk
       // po selektorze css
       // cy.get('.btn-success').click()
@@ -33,7 +41,7 @@ describe('exercises', function () {
       cy.get('.form-control-plaintext').should('have.value', 'kuba@szewczyk.com')
   })
 
-  it.only('Exercise 2a', function () {
+  it('Exercise 2a', function () {
     cy.visit('https://qbek.github.io/selenium-exercises/pl/check_boxes.html')
     
     //antypattern - po checkboxach sie nie klika
