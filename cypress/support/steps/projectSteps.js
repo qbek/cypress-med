@@ -3,17 +3,23 @@ import { projectList } from "../pageojects/projectList"
 import { projectDetailsView } from "../pageojects/projectDetailsView"
 
 export const projectSteps = {
-  userCreatesANewProject: function (name) {
-    projectList.openNewProjectCreationForm()
-    projectForm.enterName(name)
-    projectForm.submitForm()
+  userCreatesANewProject: function () {
+    cy.get('@projectName').then(function (projectName) {
+      projectList.openNewProjectCreationForm()
+      projectForm.enterName(projectName)
+      projectForm.submitForm()
+    })
   },
   
-  userChecksIfProjectIsCreated: function (name) {
-    projectDetailsView.checkProjectName(name)
+  userChecksIfProjectIsCreated: function () {
+    cy.get('@projectName').then(function (projectName) {
+      projectDetailsView.checkProjectName(projectName)
+    })
   },
   
-  userChecksIfProjectIsOnAllProjectsList: function (name) {
-    projectList.checkProjectExists(name)
+  userChecksIfProjectIsOnAllProjectsList: function () {
+    cy.get('@projectName').then(function (projectName) {
+      projectList.checkProjectExists(projectName)     
+    })
   }
 }

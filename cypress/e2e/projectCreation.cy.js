@@ -3,10 +3,11 @@ import { preconditionSteps } from "../support/steps/preconditionSteps"
 import { projectSteps } from "../support/steps/projectSteps"
 describe.only('Project creation', function () {
   it('User creates a new project', function () {
-    var projectName = "To jest moj nowy projekt"
+    cy.wrap("To jest moj nowy projekt").as('projectName')
+
     preconditionSteps.userIsLoggedIn()
-    projectSteps.userCreatesANewProject(projectName)
-    projectSteps.userChecksIfProjectIsCreated(projectName)
+    projectSteps.userCreatesANewProject()
+    projectSteps.userChecksIfProjectIsCreated()
   })
 
   it('Created project is added to all projest list', function () {
