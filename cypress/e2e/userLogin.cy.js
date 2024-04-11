@@ -1,10 +1,10 @@
 /// <reference types="cypress" />
-import { userSteps } from "../support/steps/userSteps"
+import { loginSteps } from "../support/steps/loginSteps"
 describe('User login tests', () => {
   it('User can log in', () => {
-    userSteps.openSingInPage()
-    userSteps.enterCorrectCredentials()
-    userSteps.checkIfLoggedIn()
+    loginSteps.openSingInPage()
+    loginSteps.enterCorrectCredentials()
+    loginSteps.checkIfLoggedIn()
   })
 })
 
