@@ -38,7 +38,7 @@ describe('First exercises', () => {
     cy.get('#light').should('have.attr', 'data-color', '#FF00FF')
   })
 
-  it.only('exercise 2b', () => {
+  it('exercise 2b', () => {
     cy.visit('https://qbek.github.io/selenium-exercises/pl/check_boxes.html')
 
     // trochę pójscie na skróty i omijanie przykrywającego elementu
@@ -47,5 +47,27 @@ describe('First exercises', () => {
     cy.get('#switch').uncheck({force:true})
     cy.get('[for="switch"]').click()
     cy.get('#text').should('be.enabled')
+  })
+
+  it.only("exercise 3", () => {
+    cy.visit('https://qbek.github.io/selenium-exercises/pl/radio_buttons.html')
+    cy.get('input').check('radiozet')
+    cy.get('#radiozet-details a').should('have.attr', 'href', 'https://www.radiozet.pl')
+    cy.get('#radiozet-details a').should('be.visible')
+    
+    //zamiast zapisu css, mozna rozbic na poziomie cypress
+    // cy.get('#radiozet-details').find('a').should('have.attr', 'href', 'https://www.radiozet.pl')
+
+    // cy.get('#radiozet-details').within( () => {
+    //   cy.get('a').should('have.attr', 'href', 'https://www.radiozet.pl')
+    //   cy.get('a').should('be.visible')
+    // })
+
+    cy.get('#radiozet-details a').then( ($el) => {
+      // $el.should('have.attr', 'href', 'https://www.radiozet.pl')
+      cy.wrap($el).should('have.attr', 'href', 'https://www.radiozet.pl')
+    })
+
+
   })
 })
