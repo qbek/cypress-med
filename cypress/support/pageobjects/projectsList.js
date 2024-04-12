@@ -6,8 +6,7 @@ export const projectsList = {
     cy.get(addNewProjectButton).click()
   },
 
-  checkIfExists: function(expected) {
-    cy.get('#projects_list').should('contain.text', expected)
+  checkIfExists: function(projectId, expected) {
+    cy.get(`#projects_list li[data-id="${projectId}"]`).should('have.text', expected)
   }
-  
 }

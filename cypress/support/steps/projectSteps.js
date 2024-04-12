@@ -22,7 +22,9 @@ export const projectSteps = {
 
   checkIfProjectListed: function() {
     cy.get('@projectName').then( (name) => {
-      projectsList.checkIfExists(name)
+      cy.get('@projectId').then( (id) => {
+        projectsList.checkIfExists(id, name)
+      })
     })
   }
 }

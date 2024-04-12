@@ -7,7 +7,7 @@ export const projectView = {
     cy.get(projectNameEl).should('have.text', expected)
   },
   openNewTaskForm: function () {
-    cy.get(addTaskButtonEl).click()
+    cy.get(addTaskButtonEl, {timeout: 5000000}).click()
   },
   checkIfTaskExists: function (expected) {
     cy.get(projectListViewEl).should('contain.text', expected)

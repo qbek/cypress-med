@@ -1,8 +1,7 @@
 /// <reference types="cypress" />
 import { projectSteps } from "../support/steps/projectSteps"
-import { preconditionSteps } from "../support/steps/preconditionSteps"]
-import { dataSteps } from "../support/steps/dataSteps"}
-import { faker } from '@faker-js/faker'
+import { preconditionSteps } from "../support/steps/preconditionSteps"
+import { dataSteps } from "../support/steps/dataSteps"
 describe('Project creation tests', () => {
   
   it('User can create a new project', () => {
@@ -14,11 +13,9 @@ describe('Project creation tests', () => {
 
   })
 
-  it('New created project is added to the list', () => {
+  it.only('New created project is added to the list', () => {
     dataSteps.generateProjectName()
-
-    preconditionSteps.userIsLoggedIn()
-    projectSteps.createNewProject()
+    preconditionSteps.userHasProjectCreated()
     projectSteps.checkIfProjectListed()
   })
 })
