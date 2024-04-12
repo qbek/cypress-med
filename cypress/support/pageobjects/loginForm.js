@@ -13,6 +13,7 @@ export const loginForm = {
   },
   submitButton: function() {
     cy.get(submitButton).click()
+
   }
 
 }

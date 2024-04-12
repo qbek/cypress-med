@@ -5,18 +5,24 @@ import { projectEditForm } from "../pageobjects/projectEditForm"
 
 
 export const projectSteps = {
-  createNewProject: function (name) {
-    projectsList.startProjectCreation()
-    newProjectTypeForm.selectNewProject()
-    projectEditForm.enterProjectName(name)
-    projectEditForm.submit()
+  createNewProject: function () {
+    cy.get('@projectName').then( (name) => {
+      projectsList.startProjectCreation()
+      newProjectTypeForm.selectNewProject()
+      projectEditForm.enterProjectName(name)
+      projectEditForm.submit()
+    })
   },
 
-  checkIfProjectCreated: function (name) {
-    projectView.checkProjectName(name)
+  checkIfProjectCreated: function () {
+    cy.get('@projectName').then( (name) => {
+      projectView.checkProjectName(name)
+    })   
   },
 
-  checkIfProjectListed: function(name) {
-    projectsList.checkIfExists(name)
+  checkIfProjectListed: function() {
+    cy.get('@projectName').then( (name) => {
+      projectsList.checkIfExists(name)
+    })
   }
 }

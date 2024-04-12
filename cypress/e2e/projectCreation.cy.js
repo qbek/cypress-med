@@ -2,18 +2,22 @@
 import { projectSteps } from "../support/steps/projectSteps"
 import { preconditionSteps } from "../support/steps/preconditionSteps"
 describe('Project creation tests', () => {
-  it.only('User can create a new project', () => {
-    let projectName = "Moj pierwszy projekt"  
+  
+  it('User can create a new project', () => {
+    cy.wrap("Moj pierwszy projekt").as('projectName')
+
     preconditionSteps.userIsLoggedIn()
-    projectSteps.createNewProject(projectName)
-    projectSteps.checkIfProjectCreated(projectName)
+    projectSteps.createNewProject()
+    projectSteps.checkIfProjectCreated()
+
   })
 
   it('New created project is added to the list', () => {
-    let projectName = "Moj drugi projekt"  
+    cy.wrap("Moj drugi projekt").as('projectName')
+
     preconditionSteps.userIsLoggedIn()
-    projectSteps.createNewProject(projectName)
-    projectSteps.checkIfProjectListed(projectName)
+    projectSteps.createNewProject()
+    projectSteps.checkIfProjectListed()
   })
 })
 
