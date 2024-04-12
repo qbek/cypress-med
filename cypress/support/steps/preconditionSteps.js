@@ -4,9 +4,12 @@ import { todoistApp } from "../pageobjects/todoistApp"
 
 export const preconditionSteps = {
   userIsLoggedIn: function() {
+    cy.session("user", () => {
       loginSteps.openSingInPage()
       loginSteps.enterCorrectCredentials()
       loginSteps.checkIfLoggedIn()
+    })
+    cy.visit('https://app.todoist.com/app/')
   },
 
   userHasProjectCreated: function () {

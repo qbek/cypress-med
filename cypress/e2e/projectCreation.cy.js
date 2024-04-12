@@ -13,7 +13,7 @@ describe('Project creation tests', () => {
 
   })
 
-  it.only('New created project is added to the list', () => {
+  it('New created project is added to the list', () => {
     dataSteps.generateProjectName()
     preconditionSteps.userHasProjectCreated()
     projectSteps.checkIfProjectListed()
