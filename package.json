@@ -176,7 +176,9 @@
     "yallist": "^4.0.0",
     "yauzl": "^2.10.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
