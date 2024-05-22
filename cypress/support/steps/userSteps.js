@@ -3,6 +3,7 @@ import { myProjects } from "../pageobjects/myProjects"
 import { newProjectType } from "../pageobjects/newProjectType"
 import { projectEditForm } from "../pageobjects/projectEditForm"
 import { projectView } from "../pageobjects/projectView"
+import { taskForm } from "../pageobjects/taskEditForm"
 import { todoistApp } from "../pageobjects/todoistApp"
 
 const userEmail = 'gbinxeqerpnywwysux@awdrt.org'
@@ -15,10 +16,14 @@ export const userSteps = {
   },
 
   entersCorrectCreds: function () {
-    loginForm.enterEmail(userEmail)
-    loginForm.enterPass(userPass)
+    this.enterCredentials(userEmail, userPass)
+  },
+
+  enterCredentials: function (e, p) {
+    loginForm.enterEmail(e)
+    loginForm.enterPass(p)
     loginForm.submitForm()
-    waitsUntilGlassClose()
+    todoistApp.waitForGlassToClose()
   },
 
   checkIfIsLoggedIn: function () {
@@ -38,6 +43,16 @@ export const userSteps = {
 
   checkIfProjectListed: function(name) {
     myProjects.checkIfProjectListed(name)
+  },
+
+  createNewTask: function(name) {
+    projectView.openNewTaskForm()
+    taskForm.enterTaskName(name)
+    taskForm.submit()
+  },
+
+  checkIfTaskWasCreated: function (name) {
+    projectView.checkIfTaskExists(name)
   }
 }
 

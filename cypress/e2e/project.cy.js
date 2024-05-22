@@ -13,7 +13,6 @@ describe("Projects", () => {
     let projectName = "Moj drugi projekt"  
     userPreconditions.isLoggedIn()    
     userSteps.createNewProject(projectName)
-    userSteps.checkIfProjectListed(projectName)
-    
+    userSteps.checkIfProjectListed(projectName)   
   })
 })
