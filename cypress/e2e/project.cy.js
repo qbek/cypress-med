@@ -8,7 +8,7 @@ describe("Projects", () => {
     projectSteps.checkIfProjectCreated()
   })
 
-  it.only("Created project is added to all projects list", () => {
+  it("Created project is added to all projects list", () => {
     userPreconditions.userHasProjectCreated()
     projectSteps.checkIfProjectListed()   
   })
