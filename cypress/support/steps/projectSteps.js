@@ -20,12 +20,13 @@ export const projectSteps = {
     cy.get('@projectName').then( (name) => {
       projectView.checkProjectName(name)
     })
-
   },
 
   checkIfProjectListed: function() {
-    cy.get('@projectName').then( (name) => {
-      myProjects.checkIfProjectListed(name)
+    cy.get('@projectId').then( (id) => {
+      cy.get('@projectName').then( (name) => {
+        myProjects.checkIfProjectListed(id, name)
+      })
     })
   }
 }

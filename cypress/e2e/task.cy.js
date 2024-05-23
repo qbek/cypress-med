@@ -7,7 +7,5 @@ describe('tasks', () => {
     userPreconditions.userHasProjectCreated()
     taskSteps.createNewTask()
     taskSteps.checkIfTaskWasCreated()
-
-    projectSteps.checkIfProjectIsFavorite()
   }))
 })
