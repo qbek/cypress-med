@@ -1,15 +1,16 @@
 
-import { userSteps } from "./userSteps"
+import { loginSteps } from "./loginSteps"
+import { projectSteps } from "./projectSteps"
 
 export const userPreconditions = {
   isLoggedIn: function () {
-    userSteps.opensLoginPage()
-    userSteps.entersCorrectCreds()
+    loginSteps.opensLoginPage()
+    loginSteps.entersCorrectCreds()
   },
 
   userHasProjectCreated: function (name) {
     this.isLoggedIn()
-    userSteps.createNewProject(name)
+    projectSteps.createNewProject(name)
   }
 }
 

@@ -1,13 +1,13 @@
 import { userPreconditions } from "../support/steps/userPreconditions"
-import { userSteps } from "../support/steps/userSteps"
+import { taskSteps } from "../support/steps/taskSteps"
+import { projectSteps } from "../support/steps/projectSteps"
 
 describe('tasks', () => {
   it("User can add task to the project", (() => {
-    let projectName = "Projekt na zadanie"
-    let taskName = "Moje zadanie"
+    userPreconditions.userHasProjectCreated()
+    taskSteps.createNewTask()
+    taskSteps.checkIfTaskWasCreated()
 
-    userPreconditions.userHasProjectCreated(projectName)
-    userSteps.createNewTask(taskName)
-    userSteps.checkIfTaskWasCreated(taskName)
+    projectSteps.checkIfProjectIsFavorite()
   }))
 })

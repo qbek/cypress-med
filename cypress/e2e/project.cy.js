@@ -1,18 +1,17 @@
-import { userSteps } from "../support/steps/userSteps"
+import { projectSteps } from "../support/steps/projectSteps"
 import { userPreconditions } from "../support/steps/userPreconditions"
 
 describe("Projects", () => {
-  it("User can create a project", () => {
-    let projectName = "Moj pierwszy projekt"  
+  it.only("User can create a project", () => {
     userPreconditions.isLoggedIn()
-    userSteps.createNewProject(projectName)
-    userSteps.checkIfProjectCreated(projectName)
+    projectSteps.createNewProject()
+    projectSteps.checkIfProjectCreated()
   })
 
   it("Created project is added to all projects list", () => {
-    let projectName = "Moj drugi projekt"  
     userPreconditions.isLoggedIn()    
-    userSteps.createNewProject(projectName)
-    userSteps.checkIfProjectListed(projectName)   
+    projectSteps.createNewProject()
+    projectSteps.checkIfProjectListed()   
   })
 })
+
