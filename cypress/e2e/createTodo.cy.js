@@ -1,12 +1,32 @@
 describe('Create todo feature', () => {
   it('User can create a todo', () => {
-    //user opens https://todomvc.com/examples/jquery/dist/#/all
-    cy.visit('https://todomvc.com/examples/jquery/dist/#/all')
-
-    //user enters Moje pierwsze zadanie and press enter
-    cy.get('#new-todo').type('Moje pierwsze zadanie{enter}')
-
-    //user check if Moje pierwsze zadanie is visible on todos list
-    cy.get('#todo-list li label').should('have.text', 'Moje pierwsze zadanie')
+    const todoName = 'Moje zadanie'
+    userOpensTodoMVCapp()
+    userCreatesANewTodo(todoName)
+    userChecksIfTodoIsCreated(todoName)
   })
 })
+
+function userOpensTodoMVCapp() {
+  cy.visit('https://todomvc.com/examples/jquery/dist/#/all')
+}
+
+function userCreatesANewTodo(todoName) {
+  cy.get('#new-todo').type(todoName + '{enter}')
+}
+
+function userChecksIfTodoIsCreated(todoName) {
+  //problem ze zbyt rozbudowanym selektorem
+  // cy.get('#todo-list li label').should('have.text', todoName)
+
+  //dziala, ale poza kontekstem cypress
+  // cy.get('#todo-list').then( ($list) => {
+  //   let allTodos = $list.text()
+  //   let trimmedAllTodos = allTodos.trim()
+  //   cy.wrap(trimmedAllTodos).should('equal', todoName)
+  // })
+
+  cy.get('#todo-list')
+    .invoke('text').invoke('trim')
+    .should('equal', todoName)
+}
