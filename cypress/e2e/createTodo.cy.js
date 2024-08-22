@@ -5,6 +5,16 @@ describe('Create todo feature', () => {
     userCreatesANewTodo(todoName)
     userChecksIfTodoIsCreated(todoName)
   })
+
+  it.only('User can complete todo and filers are working correctly', () => {
+    const todoName = 'Zadanie do zakończenia'
+    userOpensTodoMVCapp()
+    userCreatesANewTodo(todoName)
+    userCompletesTodo()
+    userChecksIfTodoMarkedAsCompleted()
+    userChecksIfCompletedTodoInNOTOnActiveList()
+    userChecksIfCompletedTodoIsOnCompletedList(todoName)
+  })
 })
 
 function userOpensTodoMVCapp() {
@@ -30,3 +40,21 @@ function userChecksIfTodoIsCreated(todoName) {
     .invoke('text').invoke('trim')
     .should('equal', todoName)
 }
+
+function userCompletesTodo() {
+  cy.get('#todo-list .toggle').check()
+}
+function userChecksIfTodoMarkedAsCompleted() {
+  cy.get('#todo-list li').should('have.class', 'completed')
+}
+function userChecksIfCompletedTodoInNOTOnActiveList() {
+  cy.get('#filters [href="#/active"]').click()
+  cy.get('#todo-list li').should('not.exist')
+}
+function userChecksIfCompletedTodoIsOnCompletedList(todoName) {
+  cy.get('#filters [href="#/completed"]').click()
+  cy.get('#todo-list')
+    .invoke('text').invoke('trim')
+    .should('equal', todoName)
+}
+
