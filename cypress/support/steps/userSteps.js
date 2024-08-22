@@ -1,37 +1,37 @@
+import { todoList } from "../pageobjects/todoList"
+import { todoInput } from "../pageobjects/todoInput"
+import { filters } from "../pageobjects/filters"
+import { todoMvcApp } from "../pageobjects/todoMvcApp"
 
 export const userSteps = {
   opensTodoMVCapp: function() {
-    cy.visit('https://todomvc.com/examples/jquery/dist/#/all')
+    todoMvcApp.open()
   },
   
   createsANewTodo: function(todoName) {
-    cy.get('#new-todo').type(todoName + '{enter}')
+    todoInput.enterTodoNameAndSubmit(todoName)
   },
   
   checksIfTodoIsCreated: function(todoName) {
-    cy.get('#todo-list')
-      .invoke('text').invoke('trim')
-      .should('equal', todoName)
+    todoList.checkTodoIsVisible(todoName)
   },
   
   completesTodo: function() {
-    cy.get('#todo-list .toggle').check()
+    todoList.completeTodo()
   },
   
   checksIfTodoMarkedAsCompleted: function() {
-    cy.get('#todo-list li').should('have.class', 'completed')
+    todoList.checkTodoHasCompletedClass()
   },
   
   checksIfCompletedTodoInNOTOnActiveList: function() {
-    cy.get('#filters [href="#/active"]').click()
-    cy.get('#todo-list li').should('not.exist')
+    filters.gotoActive()
+    todoList.checkListIsEmpty()
   },
   
   checksIfCompletedTodoIsOnCompletedList: function(todoName) {
-    cy.get('#filters [href="#/completed"]').click()
-    cy.get('#todo-list')
-      .invoke('text').invoke('trim')
-      .should('equal', todoName)
+    filters.gotoToCompleted()
+    todoList.checkTodoIsVisible(todoName)
   }
 }
 
