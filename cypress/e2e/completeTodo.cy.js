@@ -6,23 +6,20 @@ describe('Complete todo feature', () => {
     userSteps.opensTodoMVCapp()
   })
   it('User can complete todo and filers are working correctly', () => {
-    const todoName = 'Zadanie do zakończenia 1'  
-    userPreconditions.hasTodoCreated(todoName)
+    userPreconditions.hasTodoCreated()
     userSteps.completesTodo()
     userSteps.checksIfTodoMarkedAsCompleted()
   })
 
   it('Completed todo is filtered out from Active', () => {
-    const todoName = 'Zadanie do zakończenia 2'
-    userPreconditions.hasCompletedTodo(todoName)
+    userPreconditions.hasCompletedTodo()
     userSteps.switchToActiveTodos()
     userSteps.checksIfCompletedTodoIsFilteredOut()
   })
 
   it('Completed todo is visible on Completed', () => {
-    const todoName = 'Zadanie do zakończenia 3'
-    userPreconditions.hasCompletedTodo(todoName)
+    userPreconditions.hasCompletedTodo()
     userSteps.switchToCompletedTodos()
-    userSteps.checksIfCompletedTodoIsVisible(todoName)
+    userSteps.checksIfCompletedTodoIsVisible()
   })
 })

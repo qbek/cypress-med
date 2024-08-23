@@ -2,31 +2,42 @@ import { todoList } from "../pageobjects/todoList"
 import { todoInput } from "../pageobjects/todoInput"
 import { filters } from "../pageobjects/filters"
 import { todoMvcApp } from "../pageobjects/todoMvcApp"
+import { testData } from "../data/testData"
+
 
 export const userSteps = {
   opensTodoMVCapp: function() {
     todoMvcApp.open()
   },
   
-  createsANewTodo: function(todoName) {
-    todoInput.enterTodoNameAndSubmit(todoName)
+  createsANewTodo: function() {
+    testData.prepareTodoName()
+    cy.get('@todoName').then( (name) => {
+      createTodo(name)
+    })
   },
-
-  createsAFewTodos: function(todoNames) {
-    cy.wrap(todoNames).each( (todoName) => {
-      this.createsANewTodo(todoName)
+  
+  createsAFewTodos: function() {
+    testData.prepareTodoNames()
+    cy.get('@todoNames').each( (todoName) => {
+      createTodo(todoName)
     } )
   },
   
-  checksIfTodoIsCreated: function(todoName) {
-    todoList.checkTodoIsVisible(todoName)
+  checksIfTodoIsCreated: function() {
+    let aliasName = 'todosFromPage'
+    todoList.getAllTodoNamesAndSaveInAlias(aliasName)
+    cy.get('@todoName').then( (name) => {
+      cy.get(`@${aliasName}`).should('deep.equal', [name])
+    })
   },
 
-  checksIfAllTodosAreCreated: function (todoNames) {
-    // cy.wrap(todoNames).each( (todoName) => {
-    //   todoList.checkOneOfTodoIsVisible(todoName)
-    // })
-    todoList.checkAllTodosAreVisible(todoNames)
+  checksIfAllTodosAreCreated: function () {
+    let aliasName = 'todosFromPage'
+    todoList.getAllTodoNamesAndSaveInAlias(aliasName)
+    cy.get('@todoNames').then( (todoNames) => {
+      cy.get(`@${aliasName}`).should('include.members', todoNames)
+    })
   },
   
   completesTodo: function() {
@@ -49,9 +60,16 @@ export const userSteps = {
     todoList.checkListIsEmpty()
   },
   
-  checksIfCompletedTodoIsVisible: function(todoName) {
-    todoList.checkTodoIsVisible(todoName)
+  checksIfCompletedTodoIsVisible: function() {
+    let aliasName = 'todosFromPage'
+    todoList.getAllTodoNamesAndSaveInAlias(aliasName)
+    cy.get('@todoName').then( (name) => {
+      cy.get(`@${aliasName}`).should('deep.equal', [name])
+    })
   }
 }
 
+function createTodo(name) {
+  todoInput.enterTodoNameAndSubmit(name)
+}
 
