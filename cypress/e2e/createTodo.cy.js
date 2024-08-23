@@ -9,10 +9,11 @@ describe('Create todo feature', () => {
   })
 
   it.only('User can create a few todos', () => {
-    const todos = [ "zadanie 1", "zadanie 2", "zadanie 3"]
+    const todos = [ "default1", "default3", "zadanie 1", "zadanie 2", "zadanie 3"]
+    const todosToVerify = ["zadanie 3", "zadanie 1", "zadanie 2"]
     userSteps.opensTodoMVCapp()
     userSteps.createsAFewTodos(todos)
-    userSteps.checksIfAllTodosAreCreated(todos)
+    userSteps.checksIfAllTodosAreCreated(todosToVerify)
   })
 
 })

@@ -23,9 +23,10 @@ export const userSteps = {
   },
 
   checksIfAllTodosAreCreated: function (todoNames) {
-    cy.wrap(todoNames).each( (todoName) => {
-      todoList.checkOneOfTodoIsVisible(todoName)
-    })
+    // cy.wrap(todoNames).each( (todoName) => {
+    //   todoList.checkOneOfTodoIsVisible(todoName)
+    // })
+    todoList.checkAllTodosAreVisible(todoNames)
   },
   
   completesTodo: function() {
