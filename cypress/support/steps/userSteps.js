@@ -11,9 +11,21 @@ export const userSteps = {
   createsANewTodo: function(todoName) {
     todoInput.enterTodoNameAndSubmit(todoName)
   },
+
+  createsAFewTodos: function(todoNames) {
+    cy.wrap(todoNames).each( (todoName) => {
+      this.createsANewTodo(todoName)
+    } )
+  },
   
   checksIfTodoIsCreated: function(todoName) {
     todoList.checkTodoIsVisible(todoName)
+  },
+
+  checksIfAllTodosAreCreated: function (todoNames) {
+    cy.wrap(todoNames).each( (todoName) => {
+      todoList.checkOneOfTodoIsVisible(todoName)
+    })
   },
   
   completesTodo: function() {
@@ -23,14 +35,20 @@ export const userSteps = {
   checksIfTodoMarkedAsCompleted: function() {
     todoList.checkTodoHasCompletedClass()
   },
-  
-  checksIfCompletedTodoInNOTOnActiveList: function() {
+
+  switchToActiveTodos: function() {
     filters.gotoActive()
+  },
+
+  switchToCompletedTodos: function () {
+    filters.gotoToCompleted()
+  },
+  
+  checksIfCompletedTodoIsFilteredOut: function() { 
     todoList.checkListIsEmpty()
   },
   
-  checksIfCompletedTodoIsOnCompletedList: function(todoName) {
-    filters.gotoToCompleted()
+  checksIfCompletedTodoIsVisible: function(todoName) {
     todoList.checkTodoIsVisible(todoName)
   }
 }

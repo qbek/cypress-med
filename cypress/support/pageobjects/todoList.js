@@ -9,6 +9,11 @@ export const todoList = {
       .should('equal', name)
   },
 
+  checkOneOfTodoIsVisible: function (name) {
+    cy.get(todoListEl)
+      .should('contain.text', name)
+  },
+
   checkListIsEmpty: function () {
     cy.get(todoEl).should('not.exist')
   },
