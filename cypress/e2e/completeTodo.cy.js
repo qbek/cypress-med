@@ -17,11 +17,13 @@ describe("Complete todo feature", () => {
     userSteps.userChecksIfCompletedTodoInNOTOnActiveList(todoName)
   })
 
-  it('USer can filter Completed todos', () => {
+  it('User can filter Completed todos', () => {
     const todoName = "Zakonczone zadanie"
     userSteps.userOpensTodoMVCapp()
     userSteps.userCreatesANewTodo(todoName)
     userSteps.userCompletesTodo()
     userSteps.userChecksIfCompletedTodoIsOnCompletedList(todoName)
   })
+
 })
+

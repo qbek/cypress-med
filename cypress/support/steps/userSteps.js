@@ -1,37 +1,37 @@
+import { newTodoInput } from "../pageobjects/newTodoInput"
+import { todosFilters } from "../pageobjects/todosFilters"
+import { todosList } from "../pageobjects/todosList"
+import { todoMVCApp } from "../pageobjects/todoMVCApp"
+
 export const userSteps = {
   userOpensTodoMVCapp: () => {
-    cy.visit('https://todomvc.com/examples/jquery/dist/#/all')
+    todoMVCApp.openMainPage()
   },
 
   userCreatesANewTodo: (todoName) => {
-    cy.get('#new-todo').type(todoName + '{enter}')
+    newTodoInput.enterName(todoName)
+    newTodoInput.submit()
   },
 
   userChecksTodoIsCreated: (todoName) => {
-    cy.get('#todo-list').then( ($todoList) => {
-      cy.wrap($todoList.text().trim()).should('be.eql', todoName)
-    })
+    todosList.checkIfTodoExists(todoName)
   },
 
   userCompletesTodo: () => {
-    cy.get('.toggle').check()
+    todosList.completeTodo()
   },
 
   userChecksIfTodoMarkedAsCompleted: () => {
-    cy.get('#todo-list li').should('have.class', 'completed')
+    todosList.checkIfTodoMarkedAsCompleted()
   },
 
   userChecksIfCompletedTodoInNOTOnActiveList: (todoName) => {
-    cy.get('#filters [href="#/active"]').click()
-    cy.get('#todo-list').then( ($todoList) => {
-      cy.wrap($todoList.text().trim()).should('not.eql', todoName)
-    })
+    todosFilters.gotoActive()
+    todosList.checkIfTodoNotExists(todoName)
   },
 
   userChecksIfCompletedTodoIsOnCompletedList: (todoName) => {
-    cy.get('#filters [href="#/completed"]').click()
-    cy.get('#todo-list').then( ($todoList) => {
-      cy.wrap($todoList.text().trim()).should('be.eql', todoName)
-    })
+    todosFilters.gotoCompleted()
+    todosList.checkIfTodoExists(todoName)
   }
 }
