@@ -7,7 +7,6 @@ import { testData } from "../data/testData"
 
 export const userSteps = {
 
-
   userOpensTodoMVCapp: () => {
     todoMVCApp.openMainPage()
   },
@@ -36,14 +35,12 @@ export const userSteps = {
 
   userChecksIfCompletedTodoInNOTOnActiveList: () => {
     cy.get('@todoName').then( (todoName) => {
-      todosFilters.gotoActive()
       todosList.checkIfTodoNotExists(todoName)
     })
   },
 
   userChecksIfCompletedTodoIsOnCompletedList: () => {
     cy.get('@todoName').then( (todoName) => {
-      todosFilters.gotoCompleted()
       todosList.checkIfAllTodosExists([todoName])
     })
   },
@@ -62,5 +59,13 @@ export const userSteps = {
     cy.get('@fewTodos').then( (fewTodos) => {
       todosList.checkIfAllTodosExists(fewTodos)
     } )
+  },
+
+  userGoesToActiveTab: () => {
+    todosFilters.gotoActive()
+  },
+
+  userGoesToCompletedTab: () => {
+    todosFilters.gotoCompleted()
   }
 }
