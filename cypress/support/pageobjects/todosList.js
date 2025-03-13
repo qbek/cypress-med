@@ -22,5 +22,11 @@ export const todosList = {
     cy.get(todosList).then( ($todoList) => {
       cy.wrap($todoList.text().trim()).should('not.eql', name)
     })
-  }
+  },
+
+  checkIfOneOfTodosIsOnTheList: function (name) {
+    cy.get(todosListSector).then( ($todoList) => {
+      cy.wrap($todoList.text().trim()).should('contain', name)
+    })
+  } 
 }

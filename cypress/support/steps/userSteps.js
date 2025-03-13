@@ -33,5 +33,18 @@ export const userSteps = {
   userChecksIfCompletedTodoIsOnCompletedList: (todoName) => {
     todosFilters.gotoCompleted()
     todosList.checkIfTodoExists(todoName)
+  },
+
+  userCreatesAFewTodos: (fewTodos) => {
+    cy.wrap(fewTodos).each( (todo) => {
+      newTodoInput.enterName(todo)
+      newTodoInput.submit()
+    })
+  },
+
+  userChecksIfAllTodosAreCreated: (fewTodos) => {
+    cy.wrap(fewTodos).each( (todo) => {
+      todosList.checkIfOneOfTodosIsOnTheList(todo)
+    })
   }
 }
