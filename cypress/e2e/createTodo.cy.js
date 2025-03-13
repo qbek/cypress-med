@@ -9,8 +9,8 @@ describe('Create todo feature', () => {
   })
 
   it.only('User can create a few todos', () => {
-    const fewTodos = ['Zadanie 1', 'Zadanie 3']
-    const fewTodosToCheck = ['Zadanie 1', 'Zadanie 2', 'Zadanie 3']
+    const fewTodos = ['b1', 'b3','Zadanie 2', 'Zadanie 3', 'b3']
+    const fewTodosToCheck = ['Zadanie 1', 'Zadanie 3', 'Zadanie 2']
     userSteps.userOpensTodoMVCapp()
     userSteps.userCreatesAFewTodos(fewTodos)
     userSteps.userChecksIfAllTodosAreCreated(fewTodosToCheck)

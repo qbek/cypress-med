@@ -43,8 +43,6 @@ export const userSteps = {
   },
 
   userChecksIfAllTodosAreCreated: (fewTodos) => {
-    cy.wrap(fewTodos).each( (todo) => {
-      todosList.checkIfOneOfTodosIsOnTheList(todo)
-    })
+    todosList.checkIfOneOfTodosIsOnTheList(fewTodos)
   }
 }
