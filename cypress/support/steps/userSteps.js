@@ -14,7 +14,7 @@ export const userSteps = {
   },
 
   userChecksTodoIsCreated: (todoName) => {
-    todosList.checkIfTodoExists(todoName)
+    todosList.checkIfAllTodosExists([todoName])
   },
 
   userCompletesTodo: () => {
@@ -32,7 +32,7 @@ export const userSteps = {
 
   userChecksIfCompletedTodoIsOnCompletedList: (todoName) => {
     todosFilters.gotoCompleted()
-    todosList.checkIfTodoExists(todoName)
+    todosList.checkIfAllTodosExists([todoName])
   },
 
   userCreatesAFewTodos: (fewTodos) => {
@@ -43,6 +43,6 @@ export const userSteps = {
   },
 
   userChecksIfAllTodosAreCreated: (fewTodos) => {
-    todosList.checkIfOneOfTodosIsOnTheList(fewTodos)
+    todosList.checkIfAllTodosExists(fewTodos)
   }
 }
