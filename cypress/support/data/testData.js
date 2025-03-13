@@ -1,10 +1,14 @@
+import { faker } from "@faker-js/faker"
+
+
 export const testData = {
   defineTodoName: () => {
-    cy.wrap("Moje zadanie").as('todoName')
+    let name = faker.commerce.productName()
+    cy.wrap(name).as('todoName')
   },
 
   defineFewTodos: () => {
-    cy.wrap(['Z1', 'Z2', 'Z3']).as('fewTodos')
-
+    let todos = faker.lorem.sentences({min:2, max:10}, '|').split('|')
+    cy.wrap(todos).as('fewTodos')
   }
 }
