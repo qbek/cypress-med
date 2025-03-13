@@ -2,19 +2,28 @@ import { newTodoInput } from "../pageobjects/newTodoInput"
 import { todosFilters } from "../pageobjects/todosFilters"
 import { todosList } from "../pageobjects/todosList"
 import { todoMVCApp } from "../pageobjects/todoMVCApp"
+import { testData } from "../data/testData"
+
 
 export const userSteps = {
+
+
   userOpensTodoMVCapp: () => {
     todoMVCApp.openMainPage()
   },
 
-  userCreatesANewTodo: (todoName) => {
-    newTodoInput.enterName(todoName)
-    newTodoInput.submit()
+  userCreatesANewTodo: () => {
+    testData.defineTodoName()
+    cy.get('@todoName').then( (todoName) => {
+      newTodoInput.enterName(todoName)
+      newTodoInput.submit()
+    } )
   },
 
-  userChecksTodoIsCreated: (todoName) => {
-    todosList.checkIfAllTodosExists([todoName])
+  userChecksTodoIsCreated: () => {
+    cy.get('@todoName').then( (todoName) => {
+      todosList.checkIfAllTodosExists([todoName])
+    })
   },
 
   userCompletesTodo: () => {
@@ -25,24 +34,33 @@ export const userSteps = {
     todosList.checkIfTodoMarkedAsCompleted()
   },
 
-  userChecksIfCompletedTodoInNOTOnActiveList: (todoName) => {
-    todosFilters.gotoActive()
-    todosList.checkIfTodoNotExists(todoName)
-  },
-
-  userChecksIfCompletedTodoIsOnCompletedList: (todoName) => {
-    todosFilters.gotoCompleted()
-    todosList.checkIfAllTodosExists([todoName])
-  },
-
-  userCreatesAFewTodos: (fewTodos) => {
-    cy.wrap(fewTodos).each( (todo) => {
-      newTodoInput.enterName(todo)
-      newTodoInput.submit()
+  userChecksIfCompletedTodoInNOTOnActiveList: () => {
+    cy.get('@todoName').then( (todoName) => {
+      todosFilters.gotoActive()
+      todosList.checkIfTodoNotExists(todoName)
     })
   },
 
-  userChecksIfAllTodosAreCreated: (fewTodos) => {
-    todosList.checkIfAllTodosExists(fewTodos)
+  userChecksIfCompletedTodoIsOnCompletedList: () => {
+    cy.get('@todoName').then( (todoName) => {
+      todosFilters.gotoCompleted()
+      todosList.checkIfAllTodosExists([todoName])
+    })
+  },
+
+  userCreatesAFewTodos: () => {
+    testData.defineFewTodos()
+    cy.get('@fewTodos').then( (fewTodos) => {
+      cy.wrap(fewTodos).each( (todo) => {
+        newTodoInput.enterName(todo)
+        newTodoInput.submit()
+      })
+    })
+  },
+
+  userChecksIfAllTodosAreCreated: () => {
+    cy.get('@fewTodos').then( (fewTodos) => {
+      todosList.checkIfAllTodosExists(fewTodos)
+    } )
   }
 }

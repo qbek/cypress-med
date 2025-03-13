@@ -1,4 +1,4 @@
-const todosListSector = '#todo-list'
+const todosListSelector = '#todo-list'
 const todoItemSelector = '#todo-list li'
 const completeTodoToggleSelector = '.toggle'
 
@@ -13,8 +13,9 @@ export const todosList = {
   },
 
   checkIfTodoNotExists: function (name) {
-    cy.get(todosList).then( ($todoList) => {
+    cy.get(todosListSelector).then( ($todoList) => {
       cy.wrap($todoList.text().trim()).should('not.eql', name)
+      //powinno byc zmienione na podejscie z lini 23 - 29 z asersja not.have.memebers
     })
   },
 
