@@ -12,4 +12,5 @@ describe('Test suite for todo creatin tests', () => {
     // cy.contains('Updated by the TodoMVC Team')
     // cy.get('.todo-list').contains('Updated by the TodoMVC Team')//.should('be.visible')
   })
+
 })
