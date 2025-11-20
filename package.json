@@ -1,0 +1,22 @@
+{
+  "name": "cypress-med",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qbek/cypress-med.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qbek/cypress-med/issues"
+  },
+  "homepage": "https://github.com/qbek/cypress-med#readme",
+  "devDependencies": {
+    "cypress": "^14.5.4"
+  }
+}
