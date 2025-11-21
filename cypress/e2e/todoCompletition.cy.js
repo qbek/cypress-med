@@ -5,9 +5,6 @@ import { todoFilters } from "../support/pageobjects/todoFilters"
 import { todoMVCApp } from "../support/pageobjects/todoMVCApp"
 import { preconditions } from "../support/actions/Preconditions"
 
-
-
-
 describe('Test suite to verify todo completiotion', () => {
 
   beforeEach(() => {
@@ -16,33 +13,29 @@ describe('Test suite to verify todo completiotion', () => {
 
   it('User can complete a todo', () => {
     let todoToComplete = 'To zadanie trzeba zrobić'
-    preconditions.todoIsCreated
+    preconditions.todoIsCreated(todoToComplete)
     todoList.completeCreatedTodo()
     todoList.checkTodoMarkedAsCompleted()
   })
 
   it('User can filter active todos', () => {
     let todoToComplete = 'To zadanie nie jest active'
-    //given
-    newTodoInput.enterTodoName(todoToComplete)
-    newTodoInput.submitTodo()
-    todoList.completeCreatedTodo()
-    
+    // given 
+    // te kroki zmieniamy na jeden krok - precondition
+    // newTodoInput.enterTodoName(todoToComplete)
+    // newTodoInput.submitTodo()
+    // todoList.completeCreatedTodo()
+    // to jest ten krok
+    preconditions.todoIsCompleted(todoToComplete)
     //when
     todoFilters.gotoActive()
-
     //then
     todoList.checkIsEmpty()
   })
 
   it('User can filter completed todos', () => {
     let todoToComplete = 'To zadanie jest completed'
-    
-    newTodoInput.enterTodoName(todoToComplete)
-    newTodoInput.submitTodo()
-    todoList.completeCreatedTodo()
-
-
+    preconditions.todoIsCompleted(todoToComplete)
     todoFilters.gotoCompleted()
     todoList.checkTodoExists(todoToComplete)
   })
