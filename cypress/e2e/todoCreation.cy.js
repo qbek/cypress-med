@@ -13,7 +13,7 @@ describe('Test suite for todo creatin tests', () => {
     todoMVCApp.open()
     newTodoInput.enterTodoName(todoName)
     newTodoInput.submitTodo()
-    todoList.checkOnlyTodoExists(todoName)
+    todoList.superCheckTodoExists(todoName)
   })
 
   it('Created todo is on Active tab', () => {
@@ -24,11 +24,10 @@ describe('Test suite for todo creatin tests', () => {
     todoList.checkTodoExists(name)
   })
 
-  it.only('User can add few todos', () => {
+  it('User can add few todos', () => {
     let todo1 = "todo1"
     let todo2 = "todo2"
     let todo3 = "todo3"
-
     todoMVCApp.open()
     preconditions.todoIsCreated(todo1)
     preconditions.todoIsCreated(todo2)
@@ -37,8 +36,18 @@ describe('Test suite for todo creatin tests', () => {
     //1 sposob na sprawdzenie
     // ocena ryzyka - mozna poluzowac ta asercje na contains o ile
     // dobrze sprawdzimy
-    todoList.checkTodoExists(todo1)
-    todoList.checkTodoExists(todo2)
-    todoList.checkTodoExists(todo3)
+    // todoList.checkTodoExists(todo1)
+    // todoList.checkTodoExists(todo2)
+    // todoList.checkTodoExists(todo3)
+    // ta asercja przejdzie, chodziaz nie ma takiego todo
+    // todoList.checkTodoExists('1todo2')
+
+    todoList.superCheckTodoExists(todo1)
+    todoList.superCheckTodoExists(todo2)
+    todoList.superCheckTodoExists(todo3)
+
+    //ta asercja nie przejdzie bo nie ma takiego todo :)
+    todoList.superCheckTodoExists('1todo2')
+
   })
 })

@@ -7,12 +7,16 @@ const TODO_DELETE_BUTTON = '.destroy'
 
 export let todoList = {
 
-  checkOnlyTodoExists: (name) => {
-    cy.get(TODO_LIST).should('have.text', expectedTodo)
-  },
+  // checkOnlyTodoExists: (name) => {
+  //   cy.get(TODO_LIST).should('have.text', expectedTodo)
+  // },
 
-  checkTodoExists: (expectedTodo) => {
-    cy.get(TODO_LIST).should('contain.text', expectedTodo)
+  // checkTodoExists: (expectedTodo) => {
+  //   cy.get(TODO_LIST).should('contain.text', expectedTodo)
+  // },
+
+  superCheckTodoExists: (name) => {
+    cy.contains(TODO, name).should('be.visible')
   },
 
   completeCreatedTodo: () => {
