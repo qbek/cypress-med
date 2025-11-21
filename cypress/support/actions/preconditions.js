@@ -10,5 +10,14 @@ export let preconditions = {
   todoIsCompleted: (name) => {
     preconditions.todoIsCreated(name)
     todoList.completeCreatedTodo()
+  },
+
+  todoIsDeleted: (name) => {
+      preconditions.todoIsCreated(name)
+       todoList.deleteTodo()
+       // na potrzeby tylko i wylacznie pokazania filtrow
+       preconditions.todoIsCreated('dummy')
   }
+   
+  
 }

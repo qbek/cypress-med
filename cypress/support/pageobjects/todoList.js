@@ -6,8 +6,13 @@ const TODO_COMPLETE_TOGGLE = '.toggle'
 const TODO_DELETE_BUTTON = '.destroy'
 
 export let todoList = {
-  checkTodoExists: (expectedTodo) => {
+
+  checkOnlyTodoExists: (name) => {
     cy.get(TODO_LIST).should('have.text', expectedTodo)
+  },
+
+  checkTodoExists: (expectedTodo) => {
+    cy.get(TODO_LIST).should('contain.text', expectedTodo)
   },
 
   completeCreatedTodo: () => {
