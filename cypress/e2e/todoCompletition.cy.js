@@ -39,4 +39,15 @@ describe('Test suite to verify todo completiotion', () => {
     todoFilters.gotoCompleted()
     todoList.checkTodoExists(todoToComplete)
   })
+
+  it('User can complete THE ONE', () => {
+    let fewTodosBefore = ['1', '2', '3'] 
+    let fewTodosAfter = ['Krokodyl', 'Wrobelek']
+    let todoToComplete = 'bedzie bardzo dluga nazwa w ktorej kazdy na 100% popelnu literowke'
+    preconditions.addFewTods(fewTodosBefore)
+    preconditions.todoIsCreated(todoToComplete)
+    preconditions.addFewTods(fewTodosAfter)
+    todoList.completeTodoByName(todoToComplete)
+
+  })
 })

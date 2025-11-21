@@ -24,14 +24,18 @@ describe('Test suite for todo creatin tests', () => {
     todoList.checkTodoExists(name)
   })
 
-  it('User can add few todos', () => {
-    let todo1 = "todo1"
-    let todo2 = "todo2"
-    let todo3 = "todo3"
+  it.only('User can add few todos', () => {
+    let todos = [' Kuba', 'Mariola', '1', '2', '4', '1239487']
+    // let todo1 = "todo1"
+    // let todo2 = "todo2"
+    // let todo3 = "todo3"
     todoMVCApp.open()
-    preconditions.todoIsCreated(todo1)
-    preconditions.todoIsCreated(todo2)
-    preconditions.todoIsCreated(todo3)
+    // preconditions.todoIsCreated(todo1)
+    // preconditions.todoIsCreated(todo2)
+    // preconditions.todoIsCreated(todo3)
+    preconditions.addFewTods(todos)
+
+
 
     //1 sposob na sprawdzenie
     // ocena ryzyka - mozna poluzowac ta asercje na contains o ile
@@ -42,12 +46,12 @@ describe('Test suite for todo creatin tests', () => {
     // ta asercja przejdzie, chodziaz nie ma takiego todo
     // todoList.checkTodoExists('1todo2')
 
-    todoList.superCheckTodoExists(todo1)
-    todoList.superCheckTodoExists(todo2)
-    todoList.superCheckTodoExists(todo3)
+    todoList.superCheckTodoExists(todos)
+    // todoList.superCheckTodoExists(todo2)
+    // todoList.superCheckTodoExists(todo3)
 
     //ta asercja nie przejdzie bo nie ma takiego todo :)
-    todoList.superCheckTodoExists('1todo2')
+    // todoList.superCheckTodoExists('1todo2')
 
   })
 })

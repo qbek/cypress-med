@@ -15,12 +15,18 @@ export let todoList = {
   //   cy.get(TODO_LIST).should('contain.text', expectedTodo)
   // },
 
-  superCheckTodoExists: (name) => {
-    cy.contains(TODO, name).should('be.visible')
+  superCheckTodoExists: (names) => {
+    cy.wrap(names).each( (name) => {
+      cy.contains(TODO, name).should('be.visible')
+    })
   },
 
   completeCreatedTodo: () => {
     cy.get(TODO_COMPLETE_TOGGLE).check()
+  },
+
+  completeTodoByName: (name) => {
+    cy.contains(TODO, name).find(TODO_COMPLETE_TOGGLE).check()
   },
 
   checkTodoMarkedAsCompleted: () => {
