@@ -3,6 +3,7 @@
 const TODO_LIST= '.todo-list'
 const TODO = '.todo-list li'
 const TODO_COMPLETE_TOGGLE = '.toggle'
+const TODO_DELETE_BUTTON = '.destroy'
 
 export let todoList = {
   checkTodoExists: (expectedTodo) => {
@@ -19,5 +20,17 @@ export let todoList = {
 
   checkIsEmpty: () => {
     cy.get(TODO_LIST).should('not.exist')
+  },
+
+  deleteTodo: () => {
+    // to nie jest najlepsze rozwiazanie bo robimy force
+    cy.get(TODO_DELETE_BUTTON).click({force:true})
+
+    // symulowanie najechania mysza na element (tu nie dziala, ale gdzie indziej....)
+    // cy.get(TODO).trigger('mouseover')
+
+    // aleternatywa do najechania jest klikniecie (ale tu też nie działa)
+    // cy.get(TODO).click()
+    // cy.get(TODO_DELETE_BUTTON).click()
   }
 }

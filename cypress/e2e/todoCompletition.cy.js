@@ -3,7 +3,7 @@ import { newTodoInput } from "../support/pageobjects/newTodoInput"
 import { todoList } from "../support/pageobjects/todoList"
 import { todoFilters } from "../support/pageobjects/todoFilters"
 import { todoMVCApp } from "../support/pageobjects/todoMVCApp"
-import { preconditions } from "../support/actions/Preconditions"
+import { preconditions } from "../support/actions/preconditions"
 
 describe('Test suite to verify todo completiotion', () => {
 
