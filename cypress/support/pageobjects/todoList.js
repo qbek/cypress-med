@@ -9,7 +9,7 @@ export let todoList = {
     cy.get(TODO_LIST).should('have.text', expectedTodo)
   },
 
-  completeTodo: () => {
+  completeCreatedTodo: () => {
     cy.get(TODO_COMPLETE_TOGGLE).check()
   },
 
