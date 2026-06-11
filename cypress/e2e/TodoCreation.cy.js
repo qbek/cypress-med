@@ -1,9 +1,13 @@
 /// <reference types='cypress' />
 
+
 describe('Todo creation feature tests', () => {
+    const TODOMVC_URL = 'https://todomvc.com/examples/jquery/dist/#/all'
+
     it('User can create a todo', () => {
-        cy.visit('https://todomvc.com/examples/jquery/dist/#/all')
-        cy.get('#new-todo').type('My first todo{enter}')
-        cy.get('#todo-list label').should('have.text', 'My first todo')  
+        const todoName = 'My second todo'
+        cy.visit(TODOMVC_URL)
+        cy.get('#new-todo').type(todoName + '{enter}')
+        cy.get('#todo-list label').should('have.text', todoName)  
     })
 })
