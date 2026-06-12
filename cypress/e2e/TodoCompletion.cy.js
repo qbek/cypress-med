@@ -2,12 +2,13 @@
 import { given } from "../support/steps/given"
 import { when } from "../support/steps/when"
 import { then } from "../support/steps/then"
+import { testDataProvider } from "../support/data/testDataProvider"
 
 describe('Todo completion feature test', () => {
 
 
     it('User can complete a todo', () => {
-        const todoName = 'Completed todo'
+        const todoName = testDataProvider.getTodoName()
         given.userHasTodoMVCOpened()
         given.userHasTodoCreated(todoName)
         when.userCompletesTodo(todoName)
