@@ -8,6 +8,12 @@ export const when = {
         newTodoInput.submitTodo()  
     },
 
+    userCreatesAFewTodos: function (names) {
+        cy.wrap(names).each( function (name) {
+            when.userCreatesATodo(name)
+        })
+    },
+
     userCompletesTodo: function () {
         todoList.completeTodo()
     },

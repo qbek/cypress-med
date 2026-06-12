@@ -9,6 +9,13 @@ export const todoList = {
         cy.get(TODO_LABEL_SELECTOR).should('have.text', expectedName)
     },
 
+    checkAllTodosExistsOnList: function (expectedNames) {
+        cy.wrap(expectedNames).each( function (expected) {
+            cy.get(TODO_LIST).should('contain.text', '\n                    ' + expected + '\n')
+        })
+    },
+
+
     checkTodoNOTExistsOnList: function (expectedName) {
         cy.get(TODO_LIST).should('not.contain.text', expectedName)
     },

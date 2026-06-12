@@ -5,6 +5,10 @@ export const then = {
         todoList.checkTodoExistsOnList(name)
     },
 
+    userChecksAllTodoAreDisplayed: function(names) {
+        todoList.checkAllTodosExistsOnList(names)
+    },
+
     heChecksTodoIsNotDisplayed: function (name) {
         todoList.checkTodoNOTExistsOnList(name)
     },
