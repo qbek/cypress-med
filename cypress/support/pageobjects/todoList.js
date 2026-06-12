@@ -24,10 +24,22 @@ export const todoList = {
     checkTodoNOTExistsOnList: function (expectedName) {
         cy.get(TODO_LIST).should('not.contain.text', expectedName)
     },
+
     completeTodo: function(name) {
         // cy.get(TODO_COMPLETED_TOGGLE).check()
+        // specialist way -> fast and short
         cy.contains(TODO_ITEM_SELECTOR, name).find(TODO_COMPLETED_TOGGLE).check()
+        
+        // generalist -> common solution for all librerries like Selenium, Playwright....
+        // cy.get(TODO_ITEM_SELECTOR).each( function ($todoEl) {            
+        //     if ( $todoEl.text().trim() == name) {
+        //         cy.wrap($todoEl).find(TODO_COMPLETED_TOGGLE).check()
+        //         return false;
+        //     }
+        // })
+
     },
+
     checkTodoHasCompletedClass: function(name) {
         cy.contains(TODO_ITEM_SELECTOR, name).should('have.class', 'completed')
     }
