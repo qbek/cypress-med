@@ -5,24 +5,30 @@ const TODO_COMPLETED_TOGGLE = '.toggle'
 
 
 export const todoList = {
-    checkTodoExistsOnList:  function (expectedName) {
-        cy.get(TODO_LABEL_SELECTOR).should('have.text', expectedName)
-    },
-
     checkAllTodosExistsOnList: function (expectedNames) {
-        cy.wrap(expectedNames).each( function (expected) {
-            cy.get(TODO_LIST).should('contain.text', '\n                    ' + expected + '\n')
+        // cy.wrap(expectedNames).each( function (expected) {
+        //     cy.get(TODO_LIST).should('contain.text', '\n                    ' + expected + '\n')
+        // })
+        var todosFromApp = []
+        cy.get(TODO_LABEL_SELECTOR).each( function($label) {
+          var todoName = $label.text()
+          todosFromApp.push(todoName)
         })
+
+        cy.wrap(todosFromApp).should('deep.equal', expectedNames)
+        // cy.wrap(todosFromApp).should('have.members', expectedNames)
+        // cy.wrap(todosFromApp).should('include.members', expectedNames)
     },
 
 
     checkTodoNOTExistsOnList: function (expectedName) {
         cy.get(TODO_LIST).should('not.contain.text', expectedName)
     },
-    completeTodo: function() {
-        cy.get(TODO_COMPLETED_TOGGLE).check()
+    completeTodo: function(name) {
+        // cy.get(TODO_COMPLETED_TOGGLE).check()
+        cy.contains(TODO_ITEM_SELECTOR, name).find(TODO_COMPLETED_TOGGLE).check()
     },
-    checkTodoHasCompletedClass: function() {
-        cy.get(TODO_ITEM_SELECTOR).should('have.class', 'completed')
+    checkTodoHasCompletedClass: function(name) {
+        cy.contains(TODO_ITEM_SELECTOR, name).should('have.class', 'completed')
     }
 }

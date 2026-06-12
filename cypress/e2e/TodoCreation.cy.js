@@ -11,12 +11,11 @@ describe('Todo creation feature tests', () => {
         then.heChecksTodoIsDisplayed(todoName)
     })
 
-    it.only('User can create a few todos', () => {
+    it('User can create a few todos', () => {
         const todosNames = ['todo 11', 'todo 22', 'todo 33']
-        const expected = ['todo 111', 'todo 222', 'todo 333']
         given.userHasTodoMVCOpened()
         when.userCreatesAFewTodos(todosNames)
-        then.userChecksAllTodoAreDisplayed(expected)    
+        then.userChecksAllTodoAreDisplayed(todosNames)    
     })
 
 })

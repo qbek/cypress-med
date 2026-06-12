@@ -2,7 +2,7 @@ import { todoList } from "../pageobjects/todoList"
 
 export const then = {
     heChecksTodoIsDisplayed: function (name) {
-        todoList.checkTodoExistsOnList(name)
+        todoList.checkAllTodosExistsOnList([name])
     },
 
     userChecksAllTodoAreDisplayed: function(names) {
@@ -13,7 +13,7 @@ export const then = {
         todoList.checkTodoNOTExistsOnList(name)
     },
 
-    heChecksTodoMarkedAsCompleted: function () {
-        todoList.checkTodoHasCompletedClass()
+    heChecksTodoMarkedAsCompleted: function (name) {
+        todoList.checkTodoHasCompletedClass(name)
     }
 }

@@ -4,13 +4,21 @@ import { when } from "../support/steps/when"
 import { then } from "../support/steps/then"
 
 describe('Todo completion feature test', () => {
+
+
     it('User can complete a todo', () => {
-        console.log('START OF THE TEST!!!')
         const todoName = 'Completed todo'
         given.userHasTodoMVCOpened()
         given.userHasTodoCreated(todoName)
-        when.userCompletesTodo()
-        then.heChecksTodoMarkedAsCompleted()
-        console.log("I'm already DONE@!!")
+        when.userCompletesTodo(todoName)
+        then.heChecksTodoMarkedAsCompleted(todoName)
+    })
+
+    it('User completes THE ONE', () => {
+        const toFinish = 'finish_me'
+        const todosNames = ['todo1', 'todo2', toFinish, 'todo3']
+        given.userHasTodoMVCWithFewTods(todosNames)
+        when.userCompletesTodo(toFinish)
+        then.heChecksTodoMarkedAsCompleted(toFinish)
     })
 })

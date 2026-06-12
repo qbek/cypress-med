@@ -14,8 +14,8 @@ export const when = {
         })
     },
 
-    userCompletesTodo: function () {
-        todoList.completeTodo()
+    userCompletesTodo: function (name) {
+        todoList.completeTodo(name)
     },
 
     userGoesToActive: function () {

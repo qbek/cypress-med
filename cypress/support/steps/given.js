@@ -1,6 +1,5 @@
 import { app } from "../pageobjects/todoApp"
 import { when } from "./when"
-import { todoList } from "../pageobjects/todoList"
 
 export const given = {
     userHasTodoMVCOpened: function() {
@@ -13,6 +12,11 @@ export const given = {
 
     userHasCompletedTodo: function (name) {
         when.userCreatesATodo(name)
-        todoList.completeTodo()
+        when.userCompletesTodo(name)
+    },
+
+    userHasTodoMVCWithFewTods: function (names) {
+        given.userHasTodoMVCOpened()
+        when.userCreatesAFewTodos(names)
     }
 }

@@ -15,8 +15,6 @@ describe('Basic exercises suite', () => {
         cy.get('#firstname-check').should('have.text', 'Kuba')
         cy.get('#lastname-check').should('have.text', 'Szewc')
         cy.get('.form-control-plaintext').should('have.value', 'wp@wp.pl')
-
-
     })
 
     it('Exercise 2a', () => {
